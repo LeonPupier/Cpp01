@@ -6,12 +6,12 @@
 #    By: lpupier <lpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/03 09:49:02 by lpupier           #+#    #+#              #
-#    Updated: 2023/05/10 12:51:33 by lpupier          ###   ########.fr        #
+#    Updated: 2023/05/16 10:56:59 by lpupier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Constants
-NAME			=	war
+NAME			=	harl
 CPP				=	c++ -std=c++98
 CFLAGS			=	-Wall -Wextra -Werror
 RM				=	rm -rf
@@ -22,13 +22,9 @@ DIR_HEADERS		=	includes/
 
 # Sources files
 SRCS			=	${DIR_SRCS}main.cpp		\
-					${DIR_SRCS}Weapon.cpp	\
-					${DIR_SRCS}HumanA.cpp	\
-					${DIR_SRCS}HumanB.cpp
+					${DIR_SRCS}Harl.cpp
 
-HEADERS			=	${DIR_HEADERS}Weapon.hpp	\
-					${DIR_HEADERS}HumanA.hpp	\
-					${DIR_HEADERS}HumanB.hpp
+HEADERS			=	${DIR_HEADERS}Harl.hpp
 
 # Objects
 DIR_OBJS		=	.objs/
