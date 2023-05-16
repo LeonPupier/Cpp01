@@ -6,7 +6,7 @@
 /*   By: lpupier <lpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 14:50:51 by lpupier           #+#    #+#             */
-/*   Updated: 2023/05/16 08:30:37 by lpupier          ###   ########.fr       */
+/*   Updated: 2023/05/16 10:45:55 by lpupier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(int argc, char **argv)
 {
 	std::ifstream	ifs;
 	std::ofstream	ofs;
+	std::string		path;
 	std::string		content;
 	size_t			ptr;
 
@@ -26,17 +27,30 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 
+	path = std::string(argv[1]);
+	if (path.find_last_of('.') == std::string::npos)
+	{
+		std::cout << "[WARNING] Please give a '.txt' file..." << std::endl;
+		return (1);
+	}
+	if (path.compare(path.find_last_of('.'), path.size(), ".txt"))
+	{
+		std::cout << "[WARNING] Please give a '.txt' file..." << std::endl;
+		return (1);	
+	}
+
 	ifs.open(argv[1], std::ifstream::in);
-	ofs.open((std::string(argv[1]) += ".replace").c_str(), std::ifstream::out);
-	if (ifs.fail() || ofs.fail())
+	if (ifs.fail())
 	{
 		std::cout << "[ERROR] The specified file could not be opened..." << std::endl;
 		return (1);
 	}
+	ofs.open((path.substr(0, path.find_last_of('.')) += ".replace").c_str(), std::ifstream::out);
 
 	while (true)
 	{
 		std::getline(ifs, content);
+		
 		while (true)
 		{
 			ptr = content.find(argv[2]);
@@ -53,7 +67,7 @@ int	main(int argc, char **argv)
 		}
 
 		if (ifs.eof())
-				break ;
+			break ;
 		ofs << std::endl;
 	}
 
