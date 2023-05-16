@@ -6,7 +6,7 @@
 #    By: lpupier <lpupier@student.42lyon.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/03 09:49:02 by lpupier           #+#    #+#              #
-#    Updated: 2023/05/10 14:50:36 by lpupier          ###   ########.fr        #
+#    Updated: 2023/05/16 08:22:11 by lpupier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,17 +18,9 @@ RM				=	rm -rf
 
 # Sources folder
 DIR_SRCS		=	sources/
-DIR_HEADERS		=	includes/
 
 # Sources files
-SRCS			=	${DIR_SRCS}main.cpp		\
-					${DIR_SRCS}Weapon.cpp	\
-					${DIR_SRCS}HumanA.cpp	\
-					${DIR_SRCS}HumanB.cpp
-
-HEADERS			=	${DIR_HEADERS}Weapon.hpp	\
-					${DIR_HEADERS}HumanA.hpp	\
-					${DIR_HEADERS}HumanB.hpp
+SRCS			=	${DIR_SRCS}main.cpp
 
 # Objects
 DIR_OBJS		=	.objs/
@@ -42,9 +34,9 @@ all :	 		${NAME}
 %.o: %.cpp		
 				$(CPP) $(CFLAGS) -c $< -o $@
 
-${DIR_OBJS}%.o: %.cpp	${HEADERS}
+${DIR_OBJS}%.o: %.cpp
 				@mkdir -p ${shell dirname $@}
-				${CPP} ${CFLAGS} -c $< -o $@ -I ${DIR_HEADERS}
+				${CPP} ${CFLAGS} -c $< -o $@
 
 ${NAME}:		${OBJS}
 				$(CPP) $(CFLAGS) $(OBJS) -o $(NAME)
