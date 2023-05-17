@@ -6,17 +6,15 @@
 /*   By: lpupier <lpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 10:59:00 by lpupier           #+#    #+#             */
-/*   Updated: 2023/05/16 14:13:13 by lpupier          ###   ########.fr       */
+/*   Updated: 2023/05/17 10:36:30 by lpupier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Harl.hpp"
 
-typedef void (Harl::*list_function)(void) const;
-
 Harl::Harl(void)
 {
-	this->_level_min = 0;
+	return ;
 }
 
 Harl::~Harl(void)
@@ -24,55 +22,63 @@ Harl::~Harl(void)
 	return ;
 }
 
-void	Harl::set_level(std::string level_min)
+typedef void (Harl::*list_function)(void);
+
+void	Harl::complain(std::string level)
 {
 	int				idx;
-	std::string		list_action[]	= {"DEBUG", "INFO", "WARNING", "ERROR"};
-
+	std::string		list_action[4]	= {"DEBUG", "INFO", "WARNING", "ERROR"};
+	list_function	functions[4]	= {&Harl::_debug, &Harl::_info, &Harl::_warning, &Harl::_error};
+	
 	for (idx = 0; idx < 4; idx++)
-	{
-		if (!list_action[idx].compare(level_min))
-		{
-			this->_level_min = idx;
+		if (level == list_action[idx])
+			break ;
+
+	switch (idx) {
+		case 0: {
+			(this->*(functions[0]))();
+		}
+		case 1: {
+			(this->*(functions[1]))();
+		}
+		case 2: {
+			(this->*(functions[2]))();
+		}
+		case 3: {
+			(this->*(functions[3]))();
 			break ;
 		}
-		if (idx == 3)
-		{
-			std::cout << "[WARNING] level '" << level_min;
-			std::cout << "' does not exist, set minimum level to 'DEBUG'" << std::endl;
+		default: {
+			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+			break ;
 		}
 	}
 }
 
-void	Harl::complain(std::string level) const
+void	Harl::_debug(void)
 {
-	std::string		list_action[]	= {"DEBUG", "INFO", "WARNING", "ERROR"};
-	list_function	list_ptr[]		= {&Harl::_debug, &Harl::_info, &Harl::_warning, &Harl::_error};
-	int				idx				= 0;
-
-	for (idx = 0; idx < 4; idx++)
-	{
-		if (!list_action[idx].compare(level) && idx >= this->_level_min)
-			(this->*list_ptr[idx])();
-	}
-}
-
-void	Harl::_debug(void) const
-{
+	std::cout << "[ DEBUG ]" << std::endl;
 	std::cout << "I don't know how to code in Brainfuck..." << std::endl;
+	std::cout << std::endl;
 }
 
-void	Harl::_info(void) const
+void	Harl::_info(void)
 {
+	std::cout << "[ INFO ]" << std::endl;
 	std::cout << "I am a good developper." << std::endl;
+	std::cout << std::endl;
 }
 
-void	Harl::_warning(void) const
+void	Harl::_warning(void)
 {
+	std::cout << "[ WARNING ]" << std::endl;
 	std::cout << "I don't have a degree in computer science but I know how to code" << std::endl;
+	std::cout << std::endl;
 }
 
-void	Harl::_error(void) const
+void	Harl::_error(void)
 {
+	std::cout << "[ ERROR ]" << std::endl;
 	std::cout << "There is a problem, I don't understand this syntax :(" << std::endl;
+	std::cout << std::endl;
 }

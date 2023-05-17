@@ -6,7 +6,7 @@
 /*   By: lpupier <lpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 10:57:02 by lpupier           #+#    #+#             */
-/*   Updated: 2023/05/16 14:14:56 by lpupier          ###   ########.fr       */
+/*   Updated: 2023/05/17 10:37:16 by lpupier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	Harl			harl;
+	Harl	harl;
 
 	if (argc != 2)
 	{
@@ -23,21 +23,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	
-	harl.set_level(argv[1]);
-	
-	harl.complain("DEBUG");
-	harl.complain("INFO");
-	harl.complain("WARNING");
-	harl.complain("ERROR");
-	harl.complain("WARNING");
-	harl.complain("INFO");
-	harl.complain("WARNING");
-	harl.complain("WARNING");
-	harl.complain("ERROR");
-	harl.complain("DEBUG");
-	harl.complain("INFO");
-	harl.complain("ERROR");
-	harl.complain("DEBUG");
+	harl.complain(argv[1]);
 	
 	return (0);
 }

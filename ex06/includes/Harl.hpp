@@ -6,7 +6,7 @@
 /*   By: lpupier <lpupier@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 10:49:15 by lpupier           #+#    #+#             */
-/*   Updated: 2023/05/16 14:05:40 by lpupier          ###   ########.fr       */
+/*   Updated: 2023/05/17 10:36:38 by lpupier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,14 @@ public:
 	Harl(void);
 	~Harl(void);
 
-	void	set_level(std::string level_min);
-	void	complain(std::string level) const;
+	void	complain(std::string level);
 
 private:
 
-	int		_level_min;
-
-	void	_debug(void) const;
-	void	_info(void) const;
-	void	_warning(void) const;
-	void	_error(void) const;
+	void	_debug(void);
+	void	_info(void);
+	void	_warning(void);
+	void	_error(void);
 	
 };
 
